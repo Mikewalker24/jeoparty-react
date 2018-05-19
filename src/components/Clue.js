@@ -38,25 +38,32 @@ export default class Clue extends Component {
   };
 
   render() {
+    // Destructure the data
     const { value, clue } = this.props;
+    const {
+      category: { title },
+      question,
+      answer
+    } = clue;
+    const { isOpen, isOpening, alreadyOpened } = this.state;
 
+    // Bind classNames to state
     const clueClasses = {
       clue: true,
-      open: this.state.isOpen,
-      opening: this.state.isOpening,
-      closing: this.state.isClosing,
-      disabled: this.state.alreadyOpened
+      open: isOpen,
+      opening: isOpening,
+      disabled: alreadyOpened
     };
 
     return (
       <div className="clue-container">
         <div className={classNames(clueClasses)} onClick={this.handleClick}>
-          {this.state.isOpen ? (
+          {isOpen ? (
             <div>
-              <div className="clue-category">{clue.category.title}</div>
+              <div className="clue-category">{title}</div>
               <div className="clue-value">${value}</div>
-              <div className="question">{clue.question} </div>
-              <div className="answer">{clue.answer} </div>
+              <div className="question">{question} </div>
+              <div className="answer">{answer} </div>
             </div>
           ) : (
             <span className="value">${value}</span>
