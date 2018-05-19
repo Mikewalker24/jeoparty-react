@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Gameboard from "./components/Gameboard";
 import "./App.css";
 
-class App extends Component {
+export default class App extends Component {
   state = {
     categories: [],
     clues: [],
@@ -10,8 +10,6 @@ class App extends Component {
   };
 
   getRandomNumber = () => Math.floor(Math.random() * 10000);
-
-  getRandomCategory = arr => arr[Math.floor(Math.random() * arr.length)];
 
   getClues = id => {
     return fetch(`http://jservice.io/api/clues?category=${id}`)
@@ -47,9 +45,7 @@ class App extends Component {
   }
 
   render() {
-    const categories = this.state.categories;
-    const clues = this.state.clues;
-    const values = this.state.values;
+    const { categories, clues, values } = this.state;
 
     return (
       <div className="App">
@@ -60,5 +56,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

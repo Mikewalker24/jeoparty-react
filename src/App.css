@@ -117,6 +117,10 @@
   color: #E1A600;
 }
 
+.clue.disabled {
+  background: #666;
+}
+
 .answer {
   position: relative;
   color: #E1A600;

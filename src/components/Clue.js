@@ -5,46 +5,52 @@ export default class Clue extends Component {
   state = {
     isOpen: false,
     isOpening: false,
-    isClosing: false
+    alreadyOpened: false
+  };
+
+  openClue = () => {
+    this.setState({
+      isOpening: !this.state.isOpening
+    });
+    setTimeout(() => {
+      this.setState({
+        isOpening: !this.state.isOpening,
+        isOpen: !this.state.isOpen
+      });
+    }, 300);
+  };
+
+  closeClue = () => {
+    this.setState({
+      isOpen: !this.state.isOpen,
+      alreadyOpened: !this.state.alreadyOpened
+    });
   };
 
   handleClick = e => {
-    if (this.state.isOpen === false) {
-      this.setState({
-        isOpening: !this.state.isOpening
-      });
-      setTimeout(() => {
-        this.setState({
-          isOpening: !this.state.isOpening,
-          isOpen: !this.state.isOpen
-        });
-      }, 300);
-    } else {
-      this.setState({
-        isClosing: !this.state.isClosing,
-        isOpen: !this.state.isOpen
-      });
-      setTimeout(() => {
-        this.setState({
-          isClosing: !this.state.isClosing
-        });
-      }, 300);
+    const { isOpen, alreadyOpened } = this.state;
+
+    if (!isOpen && !alreadyOpened) {
+      this.openClue();
+    } else if (isOpen) {
+      this.closeClue();
     }
   };
 
   render() {
     const { value, clue } = this.props;
 
-    const clueClass = {
+    const clueClasses = {
       clue: true,
       open: this.state.isOpen,
       opening: this.state.isOpening,
-      closing: this.state.isClosing
+      closing: this.state.isClosing,
+      disabled: this.state.alreadyOpened
     };
 
     return (
       <div className="clue-container">
-        <div className={classNames(clueClass)} onClick={this.handleClick}>
+        <div className={classNames(clueClasses)} onClick={this.handleClick}>
           {this.state.isOpen ? (
             <div>
               <div className="clue-category">{clue.category.title}</div>
