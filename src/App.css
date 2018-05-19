@@ -1,0 +1,141 @@
+@font-face {
+  font-family: swiss;
+  src: url(fonts/swiss911.woff2);
+  src: url(fonts/swiss911.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: korinna;
+  src: url(fonts/korinna.woff2);
+  src: url(fonts/korinna.woff) format('woff');
+}
+
+.gameboard {
+  background: #000;
+  color: #fff;
+  position: relative;
+  padding: 1rem;
+}
+
+.categories {
+  margin: 0 auto 1rem;
+  display: -webkit-box;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.category {
+  background: #060ce9;
+  flex-basis: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 110px;
+  max-width: 15%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow: hidden;
+  font-family: "korinna", "helvetica", sans-serif;
+  text-transform: capitalize;
+}
+
+.value {
+  font-size: 50px;
+  letter-spacing: 0.4rem;
+  color: #E1A600;
+  text-shadow: 3px 3px #000;
+}
+
+.clues {
+  display: flex;
+}
+
+.clue-column {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  flex-basis: 15%;
+  flex-direction: column;
+}
+
+.clue-column .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clue-container {
+  background-color: #060ce9;
+  min-height: 60px;
+  margin: 0.5rem 0;
+}
+
+.clue {
+  font-family: "swiss", "helvetica", sans-serif;
+  cursor: pointer;
+  padding: 1rem 0.5rem;
+  background-color: #060ce9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(1);
+  transition: transform 0.3s ease;
+}
+
+.clue.opening {
+  transform: scale(0);
+}
+
+.clue.open {
+  transform: scale(1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 2rem;
+  font-family: "korinna", helvetica, sans-serif;
+}
+
+.clue.open div {
+  margin: 1rem 0;
+}
+
+.clue.open .clue-category {
+  text-transform: capitalize;
+}
+
+.clue.open .clue-value {
+  font-family: "swiss", "helvetica", sans-serif;
+  color: #E1A600;
+}
+
+.answer {
+  position: relative;
+  color: #E1A600;
+  font-family: "swiss", "helvetica", sans-serif;
+}
+
+.answer::after {
+  content: "hover for answer";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  color: #E1A600;
+  font-family: "swiss", "helvetica", sans-serif;
+  background-color: #060ce9;
+}
+
+.answer:hover::after {
+  opacity: 0;
+}
